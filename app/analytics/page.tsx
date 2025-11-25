@@ -1,0 +1,468 @@
+'use client'
+
+import DashboardLayout from '@/components/DashboardLayout'
+import { 
+  TrendingUp,
+  Users,
+  Eye,
+  MapPin,
+  Phone,
+  Share2,
+  Star,
+  Clock,
+  Calendar,
+  Filter,
+  Download,
+  BarChart2,
+  PieChart as PieChartIcon
+} from 'lucide-react'
+import { useState } from 'react'
+import {
+  LineChart,
+  Line,
+  BarChart,
+  Bar,
+  AreaChart,
+  Area,
+  PieChart,
+  Pie,
+  Cell,
+  RadarChart,
+  Radar,
+  PolarGrid,
+  PolarAngleAxis,
+  PolarRadiusAxis,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  Legend,
+  ResponsiveContainer
+} from 'recharts'
+
+// Sample Data
+const visitorTrend = [
+  { date: '1 نوفمبر', visitors: 1200, pageViews: 3400, calls: 89 },
+  { date: '5 نوفمبر', visitors: 1800, pageViews: 4200, calls: 112 },
+  { date: '10 نوفمبر', visitors: 1500, pageViews: 3800, calls: 95 },
+  { date: '15 نوفمبر', visitors: 2200, pageViews: 5100, calls: 143 },
+  { date: '20 نوفمبر', visitors: 2600, pageViews: 6200, calls: 178 },
+  { date: '25 نوفمبر', visitors: 3100, pageViews: 7300, calls: 201 },
+]
+
+const cityDistribution = [
+  { name: 'الرياض', value: 4500, percentage: 45 },
+  { name: 'جدة', value: 3000, percentage: 30 },
+  { name: 'الدمام', value: 1500, percentage: 15 },
+  { name: 'مكة', value: 1000, percentage: 10 },
+]
+
+const timeDistribution = [
+  { time: '6-9', orders: 120 },
+  { time: '9-12', orders: 340 },
+  { time: '12-15', orders: 580 },
+  { time: '15-18', orders: 280 },
+  { time: '18-21', orders: 720 },
+  { time: '21-24', orders: 450 },
+  { time: '0-3', orders: 80 },
+]
+
+const branchComparison = [
+  { branch: 'الرياض', visits: 5200, orders: 1340, revenue: 89000, satisfaction: 4.8 },
+  { branch: 'جدة', visits: 4100, orders: 1120, revenue: 76000, satisfaction: 4.7 },
+  { branch: 'الدمام', visits: 2800, orders: 780, revenue: 52000, satisfaction: 4.6 },
+  { branch: 'مكة', visits: 1900, orders: 520, revenue: 35000, satisfaction: 4.5 },
+]
+
+const performanceMetrics = [
+  { metric: 'سرعة الخدمة', value: 85, fullMark: 100 },
+  { metric: 'جودة الطعام', value: 92, fullMark: 100 },
+  { metric: 'النظافة', value: 88, fullMark: 100 },
+  { metric: 'خدمة العملاء', value: 90, fullMark: 100 },
+  { metric: 'القيمة مقابل السعر', value: 78, fullMark: 100 },
+]
+
+const COLORS = ['#3b82f6', '#60a5fa', '#93c5fd', '#dbeafe']
+
+export default function AnalyticsPage() {
+  const [timeRange, setTimeRange] = useState('week')
+  const [selectedMetric, setSelectedMetric] = useState('visitors')
+
+  return (
+    <DashboardLayout>
+      <div className="space-y-6">
+        {/* Header */}
+        <div className="flex items-center justify-between">
+          <div>
+            <h1 className="text-3xl font-bold text-gray-900 mb-2">التحليلات المتقدمة</h1>
+            <p className="text-gray-600">تحليل شامل لأداء المطعم وسلوك العملاء</p>
+          </div>
+          <div className="flex gap-3">
+            <select 
+              value={timeRange}
+              onChange={(e) => setTimeRange(e.target.value)}
+              className="px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500"
+            >
+              <option value="today">اليوم</option>
+              <option value="week">آخر أسبوع</option>
+              <option value="month">آخر شهر</option>
+              <option value="year">آخر سنة</option>
+            </select>
+            <button className="btn-secondary">
+              <Filter className="w-4 h-4 ml-2" />
+              تصفية
+            </button>
+            <button className="btn-primary">
+              <Download className="w-4 h-4 ml-2" />
+              تصدير التقرير
+            </button>
+          </div>
+        </div>
+
+        {/* Key Metrics */}
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+          <div 
+            onClick={() => setSelectedMetric('visitors')}
+            className={`stat-card cursor-pointer transition-all ${selectedMetric === 'visitors' ? 'ring-2 ring-primary-500' : ''}`}
+          >
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-sm text-gray-600 mb-1">إجمالي الزوار</p>
+                <p className="text-3xl font-bold text-gray-900">24.5K</p>
+                <p className="text-sm text-green-600 mt-2">↑ 12.5%</p>
+              </div>
+              <div className="w-12 h-12 bg-primary-50 rounded-lg flex items-center justify-center">
+                <Users className="w-6 h-6 text-primary-600" />
+              </div>
+            </div>
+          </div>
+
+          <div 
+            onClick={() => setSelectedMetric('views')}
+            className={`stat-card cursor-pointer transition-all ${selectedMetric === 'views' ? 'ring-2 ring-primary-500' : ''}`}
+          >
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-sm text-gray-600 mb-1">مشاهدات الصفحة</p>
+                <p className="text-3xl font-bold text-gray-900">68.2K</p>
+                <p className="text-sm text-green-600 mt-2">↑ 8.3%</p>
+              </div>
+              <div className="w-12 h-12 bg-blue-50 rounded-lg flex items-center justify-center">
+                <Eye className="w-6 h-6 text-blue-600" />
+              </div>
+            </div>
+          </div>
+
+          <div 
+            onClick={() => setSelectedMetric('calls')}
+            className={`stat-card cursor-pointer transition-all ${selectedMetric === 'calls' ? 'ring-2 ring-primary-500' : ''}`}
+          >
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-sm text-gray-600 mb-1">مكالمات الاتصال</p>
+                <p className="text-3xl font-bold text-gray-900">1.8K</p>
+                <p className="text-sm text-red-600 mt-2">↓ 2.1%</p>
+              </div>
+              <div className="w-12 h-12 bg-green-50 rounded-lg flex items-center justify-center">
+                <Phone className="w-6 h-6 text-green-600" />
+              </div>
+            </div>
+          </div>
+
+          <div 
+            onClick={() => setSelectedMetric('shares')}
+            className={`stat-card cursor-pointer transition-all ${selectedMetric === 'shares' ? 'ring-2 ring-primary-500' : ''}`}
+          >
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-sm text-gray-600 mb-1">المشاركات</p>
+                <p className="text-3xl font-bold text-gray-900">892</p>
+                <p className="text-sm text-green-600 mt-2">↑ 18.7%</p>
+              </div>
+              <div className="w-12 h-12 bg-purple-50 rounded-lg flex items-center justify-center">
+                <Share2 className="w-6 h-6 text-purple-600" />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Main Chart - Visitor Trends */}
+        <div className="card">
+          <div className="mb-6">
+            <h3 className="text-xl font-bold text-gray-900 mb-2">اتجاهات الزوار</h3>
+            <p className="text-sm text-gray-500">تحليل الزيارات والمشاهدات والمكالمات عبر الزمن</p>
+          </div>
+          <ResponsiveContainer width="100%" height={400}>
+            <AreaChart data={visitorTrend}>
+              <defs>
+                <linearGradient id="colorVisitors" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="5%" stopColor="#3b82f6" stopOpacity={0.8}/>
+                  <stop offset="95%" stopColor="#3b82f6" stopOpacity={0}/>
+                </linearGradient>
+                <linearGradient id="colorViews" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="5%" stopColor="#60a5fa" stopOpacity={0.8}/>
+                  <stop offset="95%" stopColor="#60a5fa" stopOpacity={0}/>
+                </linearGradient>
+                <linearGradient id="colorCalls" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="5%" stopColor="#34d399" stopOpacity={0.8}/>
+                  <stop offset="95%" stopColor="#34d399" stopOpacity={0}/>
+                </linearGradient>
+              </defs>
+              <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
+              <XAxis dataKey="date" stroke="#9ca3af" />
+              <YAxis stroke="#9ca3af" />
+              <Tooltip />
+              <Legend />
+              <Area 
+                type="monotone" 
+                dataKey="visitors" 
+                stroke="#3b82f6" 
+                fillOpacity={1} 
+                fill="url(#colorVisitors)"
+                name="الزوار"
+              />
+              <Area 
+                type="monotone" 
+                dataKey="pageViews" 
+                stroke="#60a5fa" 
+                fillOpacity={1} 
+                fill="url(#colorViews)"
+                name="المشاهدات"
+              />
+              <Area 
+                type="monotone" 
+                dataKey="calls" 
+                stroke="#34d399" 
+                fillOpacity={1} 
+                fill="url(#colorCalls)"
+                name="المكالمات"
+              />
+            </AreaChart>
+          </ResponsiveContainer>
+        </div>
+
+        {/* City & Time Distribution */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          {/* City Distribution */}
+          <div className="card">
+            <div className="mb-4">
+              <h3 className="text-xl font-bold text-gray-900 mb-2">التوزيع الجغرافي</h3>
+              <p className="text-sm text-gray-500">خريطة حرارية للمدن</p>
+            </div>
+            <ResponsiveContainer width="100%" height={300}>
+              <PieChart>
+                <Pie
+                  data={cityDistribution}
+                  cx="50%"
+                  cy="50%"
+                  labelLine={false}
+                  label={(entry) => `${entry.name} ${entry.percentage}%`}
+                  outerRadius={100}
+                  fill="#8884d8"
+                  dataKey="value"
+                >
+                  {cityDistribution.map((entry, index) => (
+                    <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                  ))}
+                </Pie>
+                <Tooltip />
+              </PieChart>
+            </ResponsiveContainer>
+            <div className="mt-4 space-y-2">
+              {cityDistribution.map((city, index) => (
+                <div key={city.name} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                  <div className="flex items-center gap-3">
+                    <div 
+                      className="w-4 h-4 rounded-full" 
+                      style={{ backgroundColor: COLORS[index] }}
+                    />
+                    <span className="font-semibold text-gray-900">{city.name}</span>
+                  </div>
+                  <div className="text-left">
+                    <p className="font-bold text-gray-900">{city.value.toLocaleString()}</p>
+                    <p className="text-xs text-gray-500">{city.percentage}%</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Time Distribution */}
+          <div className="card">
+            <div className="mb-4">
+              <h3 className="text-xl font-bold text-gray-900 mb-2">التوزيع الزمني</h3>
+              <p className="text-sm text-gray-500">ذروة الطلبات حسب الوقت</p>
+            </div>
+            <ResponsiveContainer width="100%" height={300}>
+              <BarChart data={timeDistribution}>
+                <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
+                <XAxis dataKey="time" stroke="#9ca3af" />
+                <YAxis stroke="#9ca3af" />
+                <Tooltip />
+                <Bar dataKey="orders" fill="#3b82f6" radius={[8, 8, 0, 0]} name="الطلبات" />
+              </BarChart>
+            </ResponsiveContainer>
+            <div className="mt-4 p-4 bg-blue-50 rounded-lg">
+              <div className="flex items-center gap-2 mb-2">
+                <Clock className="w-5 h-5 text-blue-600" />
+                <span className="font-semibold text-blue-900">ذروة النشاط</span>
+              </div>
+              <p className="text-sm text-blue-700">
+                أكثر الأوقات ازدحاماً: <strong>6:00 م - 9:00 م</strong> بمعدل 720 طلب
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* Branch Comparison */}
+        <div className="card">
+          <div className="mb-4">
+            <h3 className="text-xl font-bold text-gray-900 mb-2">مقارنة أداء الفروع</h3>
+            <p className="text-sm text-gray-500">تحليل شامل لجميع الفروع</p>
+          </div>
+          <div className="overflow-x-auto">
+            <table className="w-full">
+              <thead>
+                <tr className="border-b-2 border-gray-200">
+                  <th className="text-right py-4 px-4 font-semibold text-gray-700">الفرع</th>
+                  <th className="text-right py-4 px-4 font-semibold text-gray-700">الزيارات</th>
+                  <th className="text-right py-4 px-4 font-semibold text-gray-700">الطلبات</th>
+                  <th className="text-right py-4 px-4 font-semibold text-gray-700">الإيرادات</th>
+                  <th className="text-right py-4 px-4 font-semibold text-gray-700">معدل التحويل</th>
+                  <th className="text-right py-4 px-4 font-semibold text-gray-700">الرضا</th>
+                  <th className="text-right py-4 px-4 font-semibold text-gray-700">الأداء</th>
+                </tr>
+              </thead>
+              <tbody>
+                {branchComparison.map((branch, index) => {
+                  const conversionRate = ((branch.orders / branch.visits) * 100).toFixed(1)
+                  const performance = (branch.satisfaction / 5 * 100).toFixed(0)
+                  
+                  return (
+                    <tr key={branch.branch} className="border-b border-gray-100 hover:bg-gray-50">
+                      <td className="py-4 px-4">
+                        <div className="flex items-center gap-3">
+                          <div className="w-10 h-10 bg-primary-100 rounded-lg flex items-center justify-center">
+                            <span className="text-primary-600 font-bold">{index + 1}</span>
+                          </div>
+                          <span className="font-semibold text-gray-900">{branch.branch}</span>
+                        </div>
+                      </td>
+                      <td className="py-4 px-4 text-gray-900">{branch.visits.toLocaleString()}</td>
+                      <td className="py-4 px-4 text-gray-900">{branch.orders.toLocaleString()}</td>
+                      <td className="py-4 px-4 font-semibold text-green-600">{branch.revenue.toLocaleString()} ر.س</td>
+                      <td className="py-4 px-4">
+                        <span className="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm font-semibold">
+                          {conversionRate}%
+                        </span>
+                      </td>
+                      <td className="py-4 px-4">
+                        <div className="flex items-center gap-2">
+                          <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />
+                          <span className="font-semibold text-gray-900">{branch.satisfaction}</span>
+                        </div>
+                      </td>
+                      <td className="py-4 px-4">
+                        <div className="flex items-center gap-2">
+                          <div className="flex-1 bg-gray-200 rounded-full h-2">
+                            <div 
+                              className="bg-primary-500 h-2 rounded-full" 
+                              style={{ width: `${performance}%` }}
+                            />
+                          </div>
+                          <span className="text-sm font-semibold text-gray-700">{performance}%</span>
+                        </div>
+                      </td>
+                    </tr>
+                  )
+                })}
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        {/* Performance Radar */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <div className="card">
+            <div className="mb-4">
+              <h3 className="text-xl font-bold text-gray-900 mb-2">مؤشرات الأداء</h3>
+              <p className="text-sm text-gray-500">تحليل شامل لجودة الخدمة</p>
+            </div>
+            <ResponsiveContainer width="100%" height={400}>
+              <RadarChart data={performanceMetrics}>
+                <PolarGrid stroke="#e5e7eb" />
+                <PolarAngleAxis dataKey="metric" stroke="#6b7280" />
+                <PolarRadiusAxis angle={90} domain={[0, 100]} stroke="#6b7280" />
+                <Radar 
+                  name="الأداء" 
+                  dataKey="value" 
+                  stroke="#3b82f6" 
+                  fill="#3b82f6" 
+                  fillOpacity={0.6} 
+                />
+              </RadarChart>
+            </ResponsiveContainer>
+          </div>
+
+          {/* Insights & Recommendations */}
+          <div className="card">
+            <div className="mb-4">
+              <h3 className="text-xl font-bold text-gray-900 mb-2">رؤى ذكية</h3>
+              <p className="text-sm text-gray-500">توصيات مدعومة بالبيانات</p>
+            </div>
+            <div className="space-y-4">
+              <div className="p-4 bg-green-50 border-r-4 border-green-500 rounded-lg">
+                <div className="flex items-start gap-3">
+                  <TrendingUp className="w-5 h-5 text-green-600 mt-0.5" />
+                  <div>
+                    <h4 className="font-semibold text-green-900 mb-1">نمو ممتاز</h4>
+                    <p className="text-sm text-green-700">
+                      الزيارات زادت بنسبة 12.5% هذا الأسبوع. استمر في تطبيق استراتيجياتك الحالية.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="p-4 bg-blue-50 border-r-4 border-blue-500 rounded-lg">
+                <div className="flex items-start gap-3">
+                  <Clock className="w-5 h-5 text-blue-600 mt-0.5" />
+                  <div>
+                    <h4 className="font-semibold text-blue-900 mb-1">ذروة المساء</h4>
+                    <p className="text-sm text-blue-700">
+                      أعلى طلبات بين 6-9 مساءً. فكر في إطلاق عروض خاصة في هذا الوقت.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="p-4 bg-yellow-50 border-r-4 border-yellow-500 rounded-lg">
+                <div className="flex items-start gap-3">
+                  <MapPin className="w-5 h-5 text-yellow-600 mt-0.5" />
+                  <div>
+                    <h4 className="font-semibold text-yellow-900 mb-1">توسع محتمل</h4>
+                    <p className="text-sm text-yellow-700">
+                      45% من الزوار من الرياض. فكر في فتح فرع إضافي في الأحياء الشمالية.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="p-4 bg-purple-50 border-r-4 border-purple-500 rounded-lg">
+                <div className="flex items-start gap-3">
+                  <Star className="w-5 h-5 text-purple-600 mt-0.5" />
+                  <div>
+                    <h4 className="font-semibold text-purple-900 mb-1">رضا العملاء</h4>
+                    <p className="text-sm text-purple-700">
+                      متوسط التقييم 4.7. ركز على تحسين سرعة الخدمة لرفع التقييم إلى 4.9.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </DashboardLayout>
+  )
+}
+
