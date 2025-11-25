@@ -49,7 +49,7 @@ const menuItems: MenuItem[] = [
     orders: 389,
     rating: 4.8,
     availability: true,
-    branches: ['الرياض', 'جدة', 'الدمام'],
+    branches: ['مسقط', 'صلالة', 'صحار'],
   },
   {
     id: 2,
@@ -63,7 +63,7 @@ const menuItems: MenuItem[] = [
     orders: 312,
     rating: 4.7,
     availability: true,
-    branches: ['الرياض', 'جدة'],
+    branches: ['مسقط', 'صلالة'],
   },
   {
     id: 3,
@@ -91,7 +91,7 @@ const menuItems: MenuItem[] = [
     orders: 234,
     rating: 4.5,
     availability: true,
-    branches: ['الرياض', 'جدة'],
+    branches: ['مسقط', 'صلالة'],
   },
   {
     id: 5,
@@ -119,7 +119,7 @@ const menuItems: MenuItem[] = [
     orders: 198,
     rating: 4.7,
     availability: false,
-    branches: ['الرياض'],
+    branches: ['مسقط'],
   },
 ]
 
@@ -303,7 +303,7 @@ export default function MenuPage() {
                   <div>
                     <div className="flex items-start justify-between mb-1">
                       <h3 className="text-lg font-bold text-gray-900">{item.name}</h3>
-                      <span className="text-lg font-bold text-primary-600">{item.price} ر.س</span>
+                      <span className="text-lg font-bold text-primary-600">{item.price} ر.ع</span>
                     </div>
                     <p className="text-xs text-gray-500 mb-2">{item.category}</p>
                     <p className="text-sm text-gray-600 line-clamp-2">{item.description}</p>
@@ -376,7 +376,7 @@ export default function MenuPage() {
                         </div>
                       </td>
                       <td className="py-3 px-4 text-sm text-gray-600">{item.category}</td>
-                      <td className="py-3 px-4 text-sm font-semibold text-primary-600">{item.price} ر.س</td>
+                      <td className="py-3 px-4 text-sm font-semibold text-primary-600">{item.price} ر.ع</td>
                       <td className="py-3 px-4 text-sm text-gray-600">{item.views}</td>
                       <td className="py-3 px-4 text-sm text-gray-600">{item.orders}</td>
                       <td className="py-3 px-4">

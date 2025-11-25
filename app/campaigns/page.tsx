@@ -53,7 +53,7 @@ const campaigns: Campaign[] = [
     views: 5234,
     conversions: 856,
     revenue: 42800,
-    branches: ['الرياض', 'جدة', 'الدمام'],
+    branches: ['مسقط', 'صلالة', 'صحار'],
     items: ['برجر كلاسيك', 'بيتزا مارغريتا', 'باستا الفريدو'],
   },
   {
@@ -68,7 +68,7 @@ const campaigns: Campaign[] = [
     views: 3421,
     conversions: 723,
     revenue: 18075,
-    branches: ['الرياض', 'جدة'],
+    branches: ['مسقط', 'صلالة'],
     items: ['باقة إفطار 1', 'باقة إفطار 2'],
   },
   {
@@ -83,7 +83,7 @@ const campaigns: Campaign[] = [
     views: 0,
     conversions: 0,
     revenue: 0,
-    branches: ['الرياض', 'جدة', 'الدمام', 'مكة'],
+    branches: ['مسقط', 'صلالة', 'صحار', 'نزوى'],
     items: ['جميع الوجبات الرئيسية'],
   },
   {
@@ -98,7 +98,7 @@ const campaigns: Campaign[] = [
     views: 0,
     conversions: 0,
     revenue: 0,
-    branches: ['الرياض', 'جدة', 'الدمام', 'مكة'],
+    branches: ['مسقط', 'صلالة', 'صحار', 'نزوى'],
     items: ['جميع الأصناف'],
   },
   {
@@ -113,7 +113,7 @@ const campaigns: Campaign[] = [
     views: 8956,
     conversions: 1245,
     revenue: 62250,
-    branches: ['الرياض', 'جدة'],
+    branches: ['مسقط', 'صلالة'],
     items: ['جميع الأصناف'],
   },
 ]

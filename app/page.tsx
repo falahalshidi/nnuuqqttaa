@@ -41,10 +41,10 @@ const visitData = [
 ]
 
 const branchPerformance = [
-  { name: 'فرع الرياض', value: 400 },
-  { name: 'فرع جدة', value: 300 },
-  { name: 'فرع الدمام', value: 200 },
-  { name: 'فرع مكة', value: 100 },
+  { name: 'فرع مسقط', value: 400 },
+  { name: 'فرع صلالة', value: 300 },
+  { name: 'فرع صحار', value: 200 },
+  { name: 'فرع نزوى', value: 100 },
 ]
 
 const COLORS = ['#3b82f6', '#60a5fa', '#93c5fd', '#dbeafe']
@@ -256,7 +256,7 @@ export default function HomePage() {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-primary-100 mb-2">متوسط سعر الطلب</p>
-                <p className="text-3xl font-bold">85 ريال</p>
+                <p className="text-3xl font-bold">33 ريال</p>
                 <p className="text-primary-100 text-sm mt-2">↑ 5.2% من الشهر الماضي</p>
               </div>
               <DollarSign className="w-12 h-12 text-primary-200" />

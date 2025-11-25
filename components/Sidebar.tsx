@@ -2,6 +2,7 @@
 
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
+import { memo } from 'react'
 import {
   LayoutDashboard,
   Store,
@@ -28,7 +29,7 @@ const navigation = [
   { name: 'التقارير', href: '/reports', icon: FileText },
 ]
 
-export default function Sidebar() {
+function Sidebar() {
   const pathname = usePathname()
 
   return (
@@ -89,4 +90,6 @@ export default function Sidebar() {
     </div>
   )
 }
+
+export default memo(Sidebar)
 

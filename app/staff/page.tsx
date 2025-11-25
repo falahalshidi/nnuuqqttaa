@@ -92,7 +92,7 @@ const staff: Staff[] = [
     phone: '0501234567',
     role: 'manager',
     status: 'active',
-    branches: ['الرياض', 'جدة'],
+    branches: ['مسقط', 'صلالة'],
     lastActive: '2025-11-25T10:30:00',
     joinDate: '2024-01-15',
     tasksCompleted: 145
@@ -116,7 +116,7 @@ const staff: Staff[] = [
     phone: '0503456789',
     role: 'marketing',
     status: 'active',
-    branches: ['الرياض'],
+    branches: ['مسقط'],
     lastActive: '2025-11-24T16:45:00',
     joinDate: '2024-06-10',
     tasksCompleted: 67
@@ -140,7 +140,7 @@ const staff: Staff[] = [
     phone: '0505678901',
     role: 'manager',
     status: 'inactive',
-    branches: ['الدمام'],
+    branches: ['صحار'],
     lastActive: '2025-11-20T14:00:00',
     joinDate: '2023-11-01',
     tasksCompleted: 198

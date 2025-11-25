@@ -133,7 +133,7 @@ const assets: Asset[] = [
     dimensions: 'A4',
     uploadDate: '2025-11-08',
     uploadedBy: 'نورة أحمد',
-    usedIn: ['فرع الرياض', 'فرع جدة'],
+    usedIn: ['فرع مسقط', 'فرع صلالة'],
     quality: 'high',
     status: 'active',
     thumbnail: '📋'

@@ -1,9 +1,9 @@
 'use client'
 
 import { Bell, Search, Menu } from 'lucide-react'
-import { useState } from 'react'
+import { useState, memo } from 'react'
 
-export default function Header() {
+function Header() {
   const [notifications] = useState(3)
 
   return (
@@ -47,4 +47,6 @@ export default function Header() {
     </header>
   )
 }
+
+export default memo(Header)
 

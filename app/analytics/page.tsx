@@ -51,10 +51,10 @@ const visitorTrend = [
 ]
 
 const cityDistribution = [
-  { name: 'الرياض', value: 4500, percentage: 45 },
-  { name: 'جدة', value: 3000, percentage: 30 },
-  { name: 'الدمام', value: 1500, percentage: 15 },
-  { name: 'مكة', value: 1000, percentage: 10 },
+  { name: 'مسقط', value: 4500, percentage: 45 },
+  { name: 'صلالة', value: 3000, percentage: 30 },
+  { name: 'صحار', value: 1500, percentage: 15 },
+  { name: 'نزوى', value: 1000, percentage: 10 },
 ]
 
 const timeDistribution = [
@@ -68,10 +68,10 @@ const timeDistribution = [
 ]
 
 const branchComparison = [
-  { branch: 'الرياض', visits: 5200, orders: 1340, revenue: 89000, satisfaction: 4.8 },
-  { branch: 'جدة', visits: 4100, orders: 1120, revenue: 76000, satisfaction: 4.7 },
-  { branch: 'الدمام', visits: 2800, orders: 780, revenue: 52000, satisfaction: 4.6 },
-  { branch: 'مكة', visits: 1900, orders: 520, revenue: 35000, satisfaction: 4.5 },
+  { branch: 'مسقط', visits: 5200, orders: 1340, revenue: 89000, satisfaction: 4.8 },
+  { branch: 'صلالة', visits: 4100, orders: 1120, revenue: 76000, satisfaction: 4.7 },
+  { branch: 'صحار', visits: 2800, orders: 780, revenue: 52000, satisfaction: 4.6 },
+  { branch: 'نزوى', visits: 1900, orders: 520, revenue: 35000, satisfaction: 4.5 },
 ]
 
 const performanceMetrics = [
@@ -350,7 +350,7 @@ export default function AnalyticsPage() {
                       </td>
                       <td className="py-4 px-4 text-gray-900">{branch.visits.toLocaleString()}</td>
                       <td className="py-4 px-4 text-gray-900">{branch.orders.toLocaleString()}</td>
-                      <td className="py-4 px-4 font-semibold text-green-600">{branch.revenue.toLocaleString()} ر.س</td>
+                      <td className="py-4 px-4 font-semibold text-green-600">{branch.revenue.toLocaleString()} ر.ع</td>
                       <td className="py-4 px-4">
                         <span className="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm font-semibold">
                           {conversionRate}%
