@@ -61,29 +61,29 @@ export default function AuthModal() {
   }
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 z-[999] flex items-center justify-center p-4">
-      <div className="bg-white rounded-2xl shadow-2xl w-full max-w-3xl overflow-hidden">
+    <div className="fixed inset-0 bg-black bg-opacity-50 z-[999] flex items-center justify-center p-4 overflow-y-auto">
+      <div className="bg-white rounded-2xl shadow-2xl w-full max-w-3xl overflow-hidden my-8">
         <div className="grid grid-cols-1 md:grid-cols-2">
           {/* Form Section */}
-          <div className="p-6 md:p-8">
-            <div className="flex items-center justify-between mb-6">
+          <div className="p-6 md:p-8 max-h-[85vh] overflow-y-auto">
+            <div className="flex items-center justify-between mb-4">
               <div>
-                <p className="text-sm text-gray-500 mb-1">
+                <p className="text-xs text-gray-500 mb-1">
                   {authMode === 'login' ? 'أهلاً بعودتك' : 'انضم لعائلة نظامنا'}
                 </p>
-                <h2 className="text-2xl font-bold text-gray-900">
+                <h2 className="text-xl font-bold text-gray-900">
                   {authMode === 'login' ? 'تسجيل الدخول' : 'إنشاء حساب مطعم'}
                 </h2>
               </div>
               <button
                 onClick={closeAuthModal}
-                className="w-10 h-10 rounded-full bg-gray-100 hover:bg-gray-200 flex items-center justify-center transition-colors"
+                className="w-8 h-8 rounded-full bg-gray-100 hover:bg-gray-200 flex items-center justify-center transition-colors"
               >
                 <X className="w-4 h-4 text-gray-600" />
               </button>
             </div>
 
-            <div className="flex items-center gap-2 mb-6 bg-gray-100 rounded-lg p-1">
+            <div className="flex items-center gap-2 mb-4 bg-gray-100 rounded-lg p-1">
               <button
                 className={`flex-1 py-2 rounded-md text-sm font-semibold transition-colors ${
                   authMode === 'login' ? 'bg-white shadow text-primary-600' : 'text-gray-500'
@@ -102,17 +102,17 @@ export default function AuthModal() {
               </button>
             </div>
 
-            <form className="space-y-4" onSubmit={handleSubmit}>
+            <form className="space-y-3" onSubmit={handleSubmit}>
               {authMode === 'register' && (
                 <>
                   <label className="block">
-                    <span className="text-sm font-semibold text-gray-700 mb-2 block">اسمك الكامل</span>
+                    <span className="text-xs font-semibold text-gray-700 mb-1.5 block">اسمك الكامل</span>
                     <div className="relative">
                       <User className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
                       <input
                         type="text"
                         required
-                        className="input-field pr-10"
+                        className="input-field pr-10 py-2.5"
                         placeholder="مثال: أحمد محمد"
                         value={registerForm.name}
                         onChange={(event) => setRegisterForm((prev) => ({ ...prev, name: event.target.value }))}
@@ -121,13 +121,13 @@ export default function AuthModal() {
                   </label>
 
                   <label className="block">
-                    <span className="text-sm font-semibold text-gray-700 mb-2 block">اسم المطعم</span>
+                    <span className="text-xs font-semibold text-gray-700 mb-1.5 block">اسم المطعم</span>
                     <div className="relative">
                       <Building2 className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
                       <input
                         type="text"
                         required
-                        className="input-field pr-10"
+                        className="input-field pr-10 py-2.5"
                         placeholder="مثال: مطاعم النجاح"
                         value={registerForm.restaurantName}
                         onChange={(event) => setRegisterForm((prev) => ({ ...prev, restaurantName: event.target.value }))}
@@ -138,13 +138,13 @@ export default function AuthModal() {
               )}
 
               <label className="block">
-                <span className="text-sm font-semibold text-gray-700 mb-2 block">البريد الإلكتروني</span>
+                <span className="text-xs font-semibold text-gray-700 mb-1.5 block">البريد الإلكتروني</span>
                 <div className="relative">
                   <Mail className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
                   <input
                     type="email"
                     required
-                    className="input-field pr-10"
+                    className="input-field pr-10 py-2.5"
                     placeholder="example@restaurant.com"
                     value={authMode === 'login' ? loginForm.email : registerForm.email}
                     onChange={(event) => {
@@ -159,13 +159,13 @@ export default function AuthModal() {
               </label>
 
               <label className="block">
-                <span className="text-sm font-semibold text-gray-700 mb-2 block">كلمة المرور</span>
+                <span className="text-xs font-semibold text-gray-700 mb-1.5 block">كلمة المرور</span>
                 <div className="relative">
                   <Lock className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
                   <input
                     type="password"
                     required
-                    className="input-field pr-10"
+                    className="input-field pr-10 py-2.5"
                     placeholder="••••••••"
                     value={authMode === 'login' ? loginForm.password : registerForm.password}
                     onChange={(event) => {
@@ -181,11 +181,11 @@ export default function AuthModal() {
 
               {authMode === 'register' && (
                 <label className="block">
-                  <span className="text-sm font-semibold text-gray-700 mb-2 block">عدد الفروع الحالية</span>
+                  <span className="text-xs font-semibold text-gray-700 mb-1.5 block">عدد الفروع الحالية</span>
                   <input
                     type="number"
                     min="1"
-                    className="input-field"
+                    className="input-field py-2.5"
                     value={registerForm.branches}
                     onChange={(event) => setRegisterForm((prev) => ({ ...prev, branches: event.target.value }))}
                   />
@@ -217,7 +217,7 @@ export default function AuthModal() {
           </div>
 
           {/* Info Section */}
-          <div className="bg-gradient-to-b from-primary-600 to-primary-500 text-white p-6 md:p-8 flex flex-col justify-between">
+          <div className="bg-gradient-to-b from-primary-600 to-primary-500 text-white p-6 md:p-8 flex flex-col justify-between max-h-[85vh] overflow-y-auto">
             <div>
               <p className="text-sm text-primary-100 mb-2">المنصة المتكاملة لإدارة المطاعم</p>
               <h3 className="text-2xl font-bold mb-4">ذكاء أكثر، جهد أقل</h3>
