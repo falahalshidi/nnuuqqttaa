@@ -58,7 +58,7 @@ function Sidebar() {
 
       {/* Sidebar */}
       <div 
-        className={`h-screen bg-white border-l border-gray-200 fixed right-0 top-0 flex flex-col z-40 transition-all duration-300 overflow-hidden ${
+        className={`h-screen bg-white/95 backdrop-blur-md border-l border-primary-100 fixed right-0 top-0 flex flex-col z-40 transition-all duration-300 overflow-hidden ${
           isOpen ? 'w-64' : 'w-0'
         }`}
         style={{

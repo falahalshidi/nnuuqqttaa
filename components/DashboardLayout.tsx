@@ -11,7 +11,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
 
   if (!user) {
     return (
-      <div className="min-h-screen bg-gradient-to-b from-white to-primary-50 flex items-center justify-center p-6 text-center">
+      <div className="min-h-screen bg-gradient-to-br from-primary-50 via-white to-amber-50 flex items-center justify-center p-6 text-center">
         <div className="max-w-md space-y-4">
           <h2 className="text-2xl font-bold text-gray-900">تحتاج لتسجيل الدخول</h2>
           <p className="text-gray-600 text-sm">
@@ -31,7 +31,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
   }
   
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-gradient-to-br from-primary-50 via-white to-amber-50">
       <Sidebar />
       <div 
         className="transition-all duration-300"

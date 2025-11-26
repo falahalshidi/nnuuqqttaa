@@ -30,7 +30,7 @@ export default function LandingPage() {
   const { openAuthModal } = useAuth()
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-white via-primary-50 to-white">
+    <div className="min-h-screen bg-gradient-to-br from-primary-50 via-white to-amber-50">
       <header className="max-w-6xl mx-auto px-6 py-8 flex items-center justify-between">
         <div className="flex items-center gap-3">
           <div className="w-12 h-12 bg-primary-600 rounded-2xl flex items-center justify-center text-white text-2xl font-bold">
@@ -52,145 +52,105 @@ export default function LandingPage() {
       </header>
 
       <main className="max-w-6xl mx-auto px-6 pb-16 space-y-16">
-        <section className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
-          <div className="space-y-6">
-            <div className="inline-flex items-center gap-2 px-4 py-2 bg-primary-100 text-primary-700 rounded-full text-sm font-medium">
+        <section className="relative min-h-[600px] flex items-center justify-center">
+          {/* 3D Background Elements */}
+          <div className="absolute inset-0 overflow-hidden pointer-events-none">
+            <div className="absolute top-20 right-10 w-72 h-72 bg-gradient-to-br from-primary-200/40 to-primary-400/20 rounded-full blur-3xl animate-pulse" />
+            <div className="absolute bottom-20 left-10 w-96 h-96 bg-gradient-to-tr from-amber-200/30 to-yellow-300/20 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-gradient-to-br from-green-200/30 to-emerald-300/20 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '2s' }} />
+            
+            {/* Floating shapes */}
+            <div className="absolute top-1/4 right-1/4 w-20 h-20 bg-primary-300/20 rounded-2xl rotate-12 backdrop-blur-sm" style={{ animation: 'float 6s ease-in-out infinite' }} />
+            <div className="absolute bottom-1/3 left-1/4 w-16 h-16 bg-amber-300/20 rounded-full backdrop-blur-sm" style={{ animation: 'float 8s ease-in-out infinite', animationDelay: '1s' }} />
+            <div className="absolute top-1/3 left-1/3 w-12 h-12 bg-green-300/20 rounded-lg rotate-45 backdrop-blur-sm" style={{ animation: 'float 7s ease-in-out infinite', animationDelay: '2s' }} />
+          </div>
+
+          {/* Content */}
+          <div className="relative z-10 text-center max-w-4xl mx-auto space-y-8">
+            <div className="inline-flex items-center gap-2 px-5 py-2.5 bg-white/80 backdrop-blur-md text-primary-700 rounded-full text-sm font-medium shadow-lg border border-primary-100">
               <Sparkles className="w-4 h-4" />
-              منصة عربية 100% لإدارة المطاعم
+              منصة عمانية 100% لإدارة المطاعم
             </div>
-            <h2 className="text-4xl lg:text-5xl font-black leading-tight text-gray-900">
-              كل ما يحتاجه مطعمك في لوحة واحدة جميلة وسهلة
+            
+            <h2 className="text-5xl lg:text-6xl font-black leading-tight text-gray-900">
+              كل ما يحتاجه مطعمك في
+              <br />
+              <span className="bg-gradient-to-r from-primary-600 to-green-500 bg-clip-text text-transparent">
+                لوحة واحدة جميلة وسهلة
+              </span>
             </h2>
-            <p className="text-lg text-gray-600 leading-relaxed">
+            
+            <p className="text-xl text-gray-600 leading-relaxed max-w-2xl mx-auto">
               صممنا التجربة لتكون بسيطة، سريعة، وتمكّنك من تشغيل المنيو، الفروع، الحملات والموظفين بدون الحاجة لأي أنظمة متفرقة.
             </p>
-            <div className="flex flex-wrap gap-4">
+            
+            <div className="flex flex-wrap gap-4 justify-center">
               <button
-                className="btn-primary flex items-center gap-2"
+                className="btn-primary flex items-center gap-2 text-lg px-8 py-4 shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all"
                 onClick={() => openAuthModal('register')}
               >
                 ابدأ نسخة تجريبية مجانية
-                <ArrowRight className="w-4 h-4" />
-              </button>
-              <button
-                className="btn-secondary"
-                onClick={() => openAuthModal('login')}
-              >
-                شاهد المنصة من الداخل
+                <ArrowRight className="w-5 h-5" />
               </button>
             </div>
-            <div className="flex items-center gap-4">
-              <div>
-                <p className="text-3xl font-bold text-gray-900">+220</p>
-                <p className="text-sm text-gray-500">مطعم فعّال</p>
+            
+            <div className="flex items-center gap-8 justify-center pt-8">
+              <div className="bg-white/70 backdrop-blur-md rounded-2xl px-6 py-4 shadow-lg">
+                <p className="text-4xl font-bold text-gray-900">+220</p>
+                <p className="text-sm text-gray-600">مطعم فعّال</p>
               </div>
-              <div className="h-10 w-px bg-gray-200" />
-              <div>
-                <p className="text-3xl font-bold text-gray-900">97%</p>
-                <p className="text-sm text-gray-500">رضا العملاء خلال 3 أشهر</p>
+              <div className="bg-white/70 backdrop-blur-md rounded-2xl px-6 py-4 shadow-lg">
+                <p className="text-4xl font-bold text-gray-900">97%</p>
+                <p className="text-sm text-gray-600">رضا العملاء</p>
               </div>
-            </div>
-          </div>
-
-          <div className="relative">
-            <div className="absolute -inset-4 bg-gradient-to-br from-primary-200 to-white rounded-3xl blur-2xl opacity-70" />
-            <div className="relative bg-white rounded-3xl border border-gray-100 shadow-2xl p-6 space-y-6">
-              <div className="flex items-center justify-between">
-                <p className="text-lg font-semibold text-gray-900">ملخص الأداء اليومي</p>
-                <span className="text-sm text-green-500">+18% هذا الأسبوع</span>
-              </div>
-              <div className="grid grid-cols-2 gap-4">
-                <div className="p-4 rounded-2xl bg-primary-50">
-                  <p className="text-sm text-gray-500">زيارات المنصة</p>
-                  <p className="text-2xl font-bold text-gray-900">12,540</p>
-                  <p className="text-xs text-primary-600 mt-1">+320 زيارة اليوم</p>
-                </div>
-                <div className="p-4 rounded-2xl bg-green-50">
-                  <p className="text-sm text-gray-500">الطلبات المؤكدة</p>
-                  <p className="text-2xl font-bold text-gray-900">892</p>
-                  <p className="text-xs text-green-600 mt-1">+12% عن الأمس</p>
-                </div>
-              </div>
-              <div className="bg-gray-50 rounded-2xl p-4">
-                <p className="text-sm font-semibold text-gray-700 mb-2">آخر التنبيهات</p>
-                <ul className="text-sm text-gray-600 space-y-2">
-                  <li className="flex items-start gap-2">
-                    <CheckCircle2 className="w-4 h-4 text-green-500 mt-1" />
-                    تم تحديث المنيو للفروع الأربعة
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <CheckCircle2 className="w-4 h-4 text-green-500 mt-1" />
-                    حملة "خصم نهاية الأسبوع" جاهزة للنشر
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <CheckCircle2 className="w-4 h-4 text-green-500 mt-1" />
-                    تم إضافة موظف جديد إلى فرع صلالة
-                  </li>
-                </ul>
+              <div className="bg-white/70 backdrop-blur-md rounded-2xl px-6 py-4 shadow-lg">
+                <p className="text-4xl font-bold text-gray-900">14 يوم</p>
+                <p className="text-sm text-gray-600">تجربة مجانية</p>
               </div>
             </div>
           </div>
         </section>
 
-        <section className="bg-white rounded-3xl border border-gray-100 shadow-lg p-8 space-y-6">
-          <p className="text-sm uppercase tracking-[0.3em] text-gray-400">المزايا الأساسية</p>
-          <h3 className="text-3xl font-bold text-gray-900">تحكم كامل في كل ما يتعلق بالمطعم</h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {features.map((feature) => (
+        <section className="relative">
+          <div className="text-center mb-12">
+            <p className="text-sm uppercase tracking-[0.3em] text-primary-600 font-semibold mb-3">المزايا الأساسية</p>
+            <h3 className="text-4xl lg:text-5xl font-black text-gray-900 mb-4">
+              تحكم كامل في كل ما يتعلق بالمطعم
+            </h3>
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+              جميع الأدوات التي تحتاجها لإدارة مطعمك بكفاءة عالية
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {features.map((feature, index) => (
               <div
                 key={feature.title}
-                className="p-4 border border-gray-100 rounded-2xl hover:border-primary-100 hover:bg-primary-50/30 transition-colors"
+                className="group relative bg-white/80 backdrop-blur-sm rounded-3xl p-8 border border-gray-100 hover:border-primary-300 hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2"
+                style={{ animationDelay: `${index * 100}ms` }}
               >
-                <feature.icon className="w-10 h-10 text-primary-500 mb-3" />
-                <h4 className="text-lg font-semibold text-gray-900 mb-2">{feature.title}</h4>
-                <p className="text-sm text-gray-600">{feature.description}</p>
+                {/* Gradient background on hover */}
+                <div className="absolute inset-0 bg-gradient-to-br from-primary-50 to-white opacity-0 group-hover:opacity-100 transition-opacity rounded-3xl" />
+                
+                {/* Content */}
+                <div className="relative z-10">
+                  <div className="w-16 h-16 bg-gradient-to-br from-primary-500 to-green-400 rounded-2xl flex items-center justify-center mb-5 shadow-lg group-hover:scale-110 transition-transform">
+                    <feature.icon className="w-8 h-8 text-white" />
+                  </div>
+                  
+                  <h4 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-primary-700 transition-colors">
+                    {feature.title}
+                  </h4>
+                  
+                  <p className="text-sm text-gray-600 leading-relaxed">
+                    {feature.description}
+                  </p>
+                </div>
+
+                {/* Decorative element */}
+                <div className="absolute top-4 left-4 w-20 h-20 bg-primary-100/50 rounded-full blur-2xl opacity-0 group-hover:opacity-100 transition-opacity" />
               </div>
             ))}
-          </div>
-        </section>
-
-        <section className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          <div className="p-8 rounded-3xl bg-primary-600 text-white space-y-4">
-            <p className="text-sm text-primary-100">تكامل وتفعيل سريع</p>
-            <h4 className="text-2xl font-bold">
-              جرّب المنصة الآن بدون بطاقة بنكية
-            </h4>
-            <p className="text-primary-100 text-sm leading-6">
-              نسخة تجريبية مجانية لمدة 14 يوماً تتضمن كل المزايا من دون حدود. دعم مباشر من فريق مخصص لقطاع المطاعم.
-            </p>
-            <button
-              className="bg-white text-primary-600 font-semibold px-6 py-3 rounded-2xl flex items-center gap-2 w-fit"
-              onClick={() => openAuthModal('register')}
-            >
-              افتح لوحة التحكم فوراً
-              <ArrowRight className="w-4 h-4" />
-            </button>
-          </div>
-
-          <div className="p-8 rounded-3xl bg-gray-900 text-white space-y-4">
-            <p className="text-sm text-gray-300">تسجيل دخول تجريبي</p>
-            <h4 className="text-2xl font-bold">
-              لديك حساب؟ استرجعه بثانية واحدة
-            </h4>
-            <p className="text-gray-300 text-sm leading-6">
-              جرّب بيانات الدخول الجاهزة إذا أردت مشاهدة لوحة التحكم قبل إنشاء حساب خاص بك.
-            </p>
-            <div className="bg-gray-800 rounded-2xl p-4 space-y-2 text-sm">
-              <div className="flex items-center justify-between">
-                <span className="text-gray-400">البريد</span>
-                <span className="font-semibold">admin@restaurant.com</span>
-              </div>
-              <div className="flex items-center justify-between">
-                <span className="text-gray-400">كلمة المرور</span>
-                <span className="font-semibold">123456</span>
-              </div>
-            </div>
-            <button
-              className="bg-white/10 hover:bg-white/20 text-white px-6 py-3 rounded-2xl w-fit border border-white/10"
-              onClick={() => openAuthModal('login')}
-            >
-              تسجيل الدخول التجريبي
-            </button>
           </div>
         </section>
       </main>
